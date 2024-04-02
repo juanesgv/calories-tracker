@@ -1,8 +1,13 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, Dispatch, useState } from "react"
 import { categories } from "../data/categories"
 import { Activity } from "../interfaces"
+import { ActivityActions } from "../reducers/activity-reducer"
 
-const Form = () => {
+interface FormProps {
+    dispatch: Dispatch<ActivityActions>
+}
+
+const Form = ({dispatch}: FormProps) => {
 
     const [activity, setActivity] = useState<Activity>({
         category: 1,
@@ -13,8 +18,6 @@ const Form = () => {
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
 
         const isnumberField = ['category' , 'calories'].includes(e.target.id)
-
-
 
         setActivity({
             ...activity,
@@ -31,7 +34,7 @@ const Form = () => {
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        console.log("enviando")
+        dispatch({type: 'save-activity', payload: {newActivity: activity}})
     }
 
     return (
