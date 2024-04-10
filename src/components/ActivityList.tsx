@@ -23,7 +23,7 @@ const ActivityList = ({ activities, dispatch }: ActivityListProps) => {
 
             { isEmptyActivities ? <p className="text-center mt-8">No hay actividades</p> : (
                 activities.map(activity => (
-                    <div key={activity.id} className="px-5 py-8 bg-white mt-5 flex justify-between">
+                    <div key={activity.id} className="px-5 py-8 bg-white mt-5 flex justify-between shadow">
                         <div className="space-y-2 relative">
                             <p className={`absolute -top-8 -left-8 p-10 py-2 text-white uppercase font-bold ${activity.category === 1 ? 'bg-lime-500' : 'bg-orange-500'}`}>
                                 {categoryName(activity.category)}
